@@ -5,7 +5,10 @@
             "pears": {
                 "guns": {
                     "death": {
-                        "true": "lol"
+                        "true": "lol",
+                        "aboutme.txt": {
+                            "huh?": "https://www.youtube.com/watch?v=L7l8j9raHVA"
+                        }
                     }
                 }
             }
