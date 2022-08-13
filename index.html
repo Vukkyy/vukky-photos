@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <audio autoplay loop src="/img/bgm.mp3"></audio>
-        <link rel="preload" href="/data.json" as="fetch">
+        <audio autoplay loop src="img/bgm.mp3"></audio>
+        <link rel="preload" href="data.json" as="fetch">
         <title>Vukky Files</title>
         <style>
             * {
@@ -26,7 +26,7 @@
 
             let datas;
             async function prep() {
-                await fetch("/data.json")
+                await fetch("data.json")
                     .then((response) => response.json())
                     .then((data) => {
                         datas = data;
@@ -51,10 +51,10 @@
                 if(path == "/") path = ""
                 let folderData = await getNewPath(path)
                 Object.entries(folderData).forEach(function(oneFile) {
-                    let icon = "/img/file.png"
-                    if(typeof oneFile[1] == "object") icon = "/img/folder.png"
-                    if(oneFile[0].endsWith(".txt")) icon = "/img/txt.png"
-                    document.querySelector("#items").innerHTML += `<span onclick="${typeof oneFile[1] == "object" ? "new Audio('/img/tick.mp3').play();loadNewStuff('" + path + '/' + oneFile[0] + "')" : "new Audio('/img/next.mp3').play();window.open('" + oneFile[1] + "', 'vukkyfiles', 'popup')"}"><img src="${icon}"> ${oneFile[0]}</div><br>`;
+                    let icon = "img/file.png"
+                    if(typeof oneFile[1] == "object") icon = "img/folder.png"
+                    if(oneFile[0].endsWith(".txt")) icon = "img/txt.png"
+                    document.querySelector("#items").innerHTML += `<span onclick="${typeof oneFile[1] == "object" ? "new Audio('img/tick.mp3').play();loadNewStuff('" + path + '/' + oneFile[0] + "')" : "new Audio('img/next.mp3').play();window.open('" + oneFile[1] + "', 'vukkyfiles', 'popup')"}"><img src="${icon}"> ${oneFile[0]}</div><br>`;
                 })
             }
             window.addEventListener("load", function() { loadNewStuff("/") })
@@ -66,7 +66,7 @@
                 <span style="color:#00a8f3">vukky</span> 
                 <span style="color: #5f6368">files</span>
             </span>
-            <a href="https://sus.omg.lol"><img src="/img/vukkery-trans.gif" style="width: 2em; float: right; padding-right: .5em;"></a>
+            <a href="https://sus.omg.lol"><img src="img/vukkery-trans.gif" style="width: 2em; float: right; padding-right: .5em;"></a>
             <hr>
         </header>
         <content>
