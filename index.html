@@ -1,23 +1,77 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Vukky Photos</title>
+        <audio autoplay loop src="/img/bgm.mp3"></audio>
+        <link rel="preload" href="/data.json" as="fetch">
+        <title>Vukky Files</title>
         <style>
-            @font-face {
-                font-family: "ps";
-                src: url("/img/ps.ttf"),
-            }
             * {
-                font-family: "ps", sans-serif;
+                font-family: sans-serif;
+            }
+            hr {
+                color: #DADCE0;
+                background-color: #DADCE0;
+                height: 2px;
+                border-width: 0;
+            }
+            #items span img {
+                image-rendering: pixelated;
+            }
+            #items span {
+                cursor: pointer;
             }
         </style>
+        <script>
+            // ?????????????
+
+            let datas;
+            async function prep() {
+                await fetch("/data.json")
+                    .then((response) => response.json())
+                    .then((data) => {
+                        datas = data;
+                    })
+            }
+            async function getNewPath(path) {
+                if(!datas) await prep();
+                if(path == "/") path = "";
+                let traverseList = path.split("/")
+                let traversedData = datas;
+                for (let i = 0; i < traverseList.length; i++) {
+                    if(typeof traversedData[traverseList[i]] == "object") {
+                        traversedData = traversedData[traverseList[i]]
+                    } else {
+                        throw "Poo" + traverseList[i];
+                    }
+                }
+                return traversedData;
+            }
+            async function loadNewStuff(path) {
+                document.querySelector("#items").innerHTML = "";
+                if(path == "/") path = ""
+                let folderData = await getNewPath(path)
+                Object.entries(folderData).forEach(function(oneFile) {
+                    let icon = "/img/file.png"
+                    if(typeof oneFile[1] == "object") icon = "/img/folder.png"
+                    if(oneFile[0].endsWith(".txt")) icon = "/img/txt.png"
+                    document.querySelector("#items").innerHTML += `<span onclick="${typeof oneFile[1] == "object" ? "new Audio('/img/tick.mp3').play();loadNewStuff('" + path + '/' + oneFile[0] + "')" : "new Audio('/img/next.mp3').play();window.open('" + oneFile[1] + "', 'vukkyfiles', 'popup')"}"><img src="${icon}"> ${oneFile[0]}</div><br>`;
+                })
+            }
+            window.addEventListener("load", function() { loadNewStuff("/") })
+        </script>
     </head>
-    <body style="margin: 0;">
+    <body style="background-color: #fff">
         <header>
-            <span style="font-size: 20px">
+            <span style="font-size: 20px;">
                 <span style="color:#00a8f3">vukky</span> 
-                <span style="color: #5f6368">photos</span>
+                <span style="color: #5f6368">files</span>
             </span>
+            <a href="https://sus.omg.lol"><img src="/img/vukkery-trans.gif" style="width: 2em; float: right; padding-right: .5em;"></a>
+            <hr>
         </header>
+        <content>
+            <div style="color: #5f6368; font-size: 10px;" id="path"></div>
+            <div id="items"></div>
+        </content>
     </body>
 </html>
