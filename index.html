@@ -19,6 +19,7 @@
             }
             #items span {
                 cursor: pointer;
+                user-select: none;
             }
         </style>
         <script>
@@ -50,6 +51,9 @@
                 document.querySelector("#items").innerHTML = "";
                 if(path == "/") path = ""
                 let folderData = await getNewPath(path)
+                if(path != "") {
+                    document.querySelector("#items").innerHTML += `<span onclick="new Audio('img/back.mp3').play();loadNewStuff('${path.substring(0, path.lastIndexOf('/'))}')"><img src="img/back.png"> back<br></span>`
+                }
                 Object.entries(folderData).forEach(function(oneFile) {
                     let icon = "img/file.png"
                     if(typeof oneFile[1] == "object") icon = "img/folder.png"
