@@ -24,6 +24,7 @@
         </style>
         <script>
             // ?????????????
+            const delay = ms => new Promise(res => setTimeout(res, ms));
 
             let datas;
             async function prep() {
@@ -52,9 +53,12 @@
                 if(path == "/") path = ""
                 let folderData = await getNewPath(path)
                 if(path != "") {
+                    document.querySelector("#location").innerHTML = `${path}`
                     document.querySelector("#items").innerHTML += `<span onclick="new Audio('img/back.mp3').play();loadNewStuff('${path.substring(0, path.lastIndexOf('/'))}')"><img src="img/back.png"> back<br></span>`
+                } else {
+                    document.querySelector("#location").innerHTML = `vukky`
                 }
-                Object.entries(folderData).forEach(function(oneFile) {
+                Object.entries(folderData).forEach(async function(oneFile) {
                     let icon = "img/file.png"
                     if(typeof oneFile[1] == "object") icon = "img/folder.png"
                     if(oneFile[0].endsWith(".txt")) icon = "img/txt.png"
@@ -67,7 +71,7 @@
     <body style="background-color: #fff">
         <header>
             <span style="font-size: 20px;">
-                <span style="color:#00a8f3">vukky</span> 
+                <span style="color:#00a8f3" id="location">vukky</span> 
                 <span style="color: #5f6368">files</span>
             </span>
             <a href="https://sus.omg.lol"><img src="img/vukkery-trans.gif" style="width: 2em; float: right; padding-right: .5em;"></a>
