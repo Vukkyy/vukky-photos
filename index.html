@@ -2,6 +2,7 @@
 <html>
     <head>
         <audio autoplay loop src="img/bgm.mp3"></audio>
+        <audio loop src="img/bgmaww.mp3"></audio>
         <link rel="preload" href="data.json" as="fetch">
         <title>Vukky Files</title>
         <style>
@@ -51,6 +52,11 @@
             async function loadNewStuff(path) {
                 document.querySelector("#items").innerHTML = "";
                 if(path == "/") path = ""
+                if(path.startsWith("/aww")) {
+                    
+                } else {
+
+                }
                 let folderData = await getNewPath(path)
                 if(path != "") {
                     document.querySelector("#location").innerHTML = `${path}`
