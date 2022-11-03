@@ -71,7 +71,13 @@
                     document.querySelector("#items").innerHTML += `<span onclick="${typeof oneFile[1] == "object" ? "new Audio('img/tick.mp3').play();loadNewStuff('" + path + '/' + oneFile[0] + "')" : "new Audio('img/next.mp3').play();window.open('" + oneFile[1] + "', 'vukkyfiles', 'popup')"}"><img src="${icon}"> ${oneFile[0]}</div><br>`;
                 })
             }
-            window.addEventListener("load", function() { loadNewStuff("/") })
+            window.addEventListener("load", function() { 
+                if(document.location.search) {
+                    loadNewStuff(document.location.search.substr(1))
+                } else {
+                    loadNewStuff("/") 
+                }
+            })
         </script>
     </head>
     <body style="background-color: #fff">
@@ -85,7 +91,7 @@
         </header>
         <content>
             <div style="color: #5f6368; font-size: 10px;" id="path"></div>
-            <div id="items"></div>
+            <div id="items">Please wait, loading data.</div>
         </content>
     </body>
 </html>
