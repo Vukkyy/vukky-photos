@@ -5,8 +5,13 @@
             "IMPORTANT.txt": "https://pastebin.com/raw/FVSgy1EP",
             "axiinyaa.png": "https://i.imgur.com/m16KQHZ.png",
             "doom_guy.png": "https://i.imgur.com/9jHi58z.png",
-            "example_bcl.png": "https://i.imgur.com/Q1f1BiA.png",
+            "example_bcl": {
+                "1.png": "https://i.imgur.com/Q1f1BiA.png",
+                "2.png": "https://i.imgur.com/akZNLwD.png"
+            },
             "gordon_freeman.png": "https://i.imgur.com/hbQAMuS.png",
+            "isaac.png": "https://i.imgur.com/JQ2kfFW.png",
+            "niko.png": "https://i.imgur.com/jEfaNRQ.png",
             "spluffie": {
                 "1.png": "https://i.imgur.com/qiS21cJ.png",
                 "2.png": "https://i.imgur.com/48JSnMR.png"
