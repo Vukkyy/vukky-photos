@@ -51,6 +51,7 @@
             }
             async function loadNewStuff(path) {
                 document.querySelector("#items").innerHTML = "";
+                window.history.pushState("", "", `?${path}`);
                 if(path == "/") path = ""
                 if(path.startsWith("/aww")) {
                     
